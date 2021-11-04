@@ -1,0 +1,147 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title d-flex align-item-center" id="exampleModalLabel"> <mat-icon>view_list</mat-icon> Clases de notas</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-primary table-hover" >
+                <thead>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Cod.
+                    </th>
+                    <th>
+                        Add.
+                    </th>
+                    <th>
+                        Act.
+                    </th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="d-flex">
+                            <input type="color" class="form-control" [(ngModel)]="_color">
+                            <input type="text" class="form-control" [(ngModel)]="_nombre">
+                        </td>
+                        <td><input type="text" class="form-control" [(ngModel)]="_descip" ></td>
+                        <td><input type="text" disabled class="form-control" [(ngModel)]="_cod" ></td>
+                        <td (click)="sclas(_nombre, _descip, _color)" > <mat-icon>save</mat-icon> </td>
+                        <td> <mat-icon>replay</mat-icon> </td>
+                    </tr>
+                </tbody>
+                <thead class="table-success">
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripción
+                    </th>
+                    <th>
+                        Color
+                    </th>
+                    <th>
+                        Cod.
+                    </th>
+                    <th>
+                        El.
+                    </th>
+                </thead>
+                <tbody class="table-warning ">
+                    <tr *ngFor="let x of arrgnotes" style="cursor: pointer;" (click)="getUnitClassNotes(x.cod_class, x.n_class)" >
+                        <td>{{ x.n_class }}            </td>
+                        <td>{{ x.d_class }}            </td>
+                        <td>{{ x.color }}              </td>
+                        <td>{{ x.cod_class }}          </td>
+                        <td (click)="dClass(x.cod_class)" ><mat-icon>delete</mat-icon></td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title d-flex align-item-center" id="exampleModalLabel">
+              <mat-icon>description</mat-icon> Crear nota</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid">
+              <span>Escoje una clase para poder agregar una nota:</span>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                   Clase seleccionada: {{_name_class_selected}} 
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li *ngFor=" let j of arrgnotes " >
+                      <a class="dropdown-item" href="javascript:void(0)" (click)="controlTextArea('N. Clase:' + j.n_class + ' / Cod.:' + j.cod_class)" >
+                        {{j.n_class}} / {{j.cod_class}}
+                      </a>
+                  </li>
+                </ul>
+              </div>
+          </div>
+
+          <div class="table-responsive">
+            <mat-form-field class="w-100" hintLabel="Max 10 characters" appearance="fill">
+                <mat-label>Enter some input</mat-label>
+                <textarea [disabled]="_text_dis" matInput #textArea maxlength="1000"  cols="50" rows="10" placeholder="" [(ngModel)]="_d_notes"></textarea>
+                <mat-hint align="end">{{textArea.value?.length || 0}}/1000</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Guardar Nota</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<!--            -->
+
+
+<div class="cont">
+
+    <section class="d-flex justify-content-center flex-wrap align-item-center">
+        <div class="d-flex">
+            <!-- hintLabel="Max 10 characters" -->
+            <mat-form-field  appearance="fill">
+                <mat-label>Filtrado por clase:</mat-label>
+                <input matInput #input maxlength="10" placeholder="" disabled [(ngModel)]="_n_class">
+                <!-- <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint> -->
+            </mat-form-field> 
+            <div class="btn btn-primary d-flex align-item-center" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <mat-icon>search</mat-icon>
+            </div>
+        </div>
+        <div class="btn btn-success d-flex align-item-center" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            <mat-icon>add</mat-icon>
+        </div>
+    </section>
+
+</div>

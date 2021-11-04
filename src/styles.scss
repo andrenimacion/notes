@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; height: 100vh; }
+
+
+.cont {
+    height: 100%;
+    background: rgb(235,235,235);
+    background: linear-gradient(157deg, rgba(235,235,235,1) 0%, rgba(118,121,125,0.7861519607843137) 100%);
+}
+
+* {
+    font-family: 'Zen Maru Gothic', sans-serif;
+}
